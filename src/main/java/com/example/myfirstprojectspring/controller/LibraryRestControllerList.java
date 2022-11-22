@@ -1,24 +1,22 @@
-package com.example.myfirstprojectspring;
+package com.example.myfirstprojectspring.controller;
 
 
+import com.example.myfirstprojectspring.entity.Book;
+import com.example.myfirstprojectspring.service.BookServiceList;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api")
-public class LibraryRestController {
+public class LibraryRestControllerList {
     //here we are creating our end-point rest API
     @Autowired
-    BookService bookservice;
+    BookServiceList bookservice;
 
     //CRUD: read
     @GetMapping("books")
     public Iterable<Book> getAllBooks() {
-        //
-        return bookservice.queryBooksFromH2();
+        return bookservice.listBooksFromH2();
     }
 
 }

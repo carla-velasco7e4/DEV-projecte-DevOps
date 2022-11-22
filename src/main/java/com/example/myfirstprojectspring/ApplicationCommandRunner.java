@@ -1,5 +1,8 @@
 package com.example.myfirstprojectspring;
 
+import com.example.myfirstprojectspring.entity.Book;
+import com.example.myfirstprojectspring.service.BookServiceCreate;
+import com.example.myfirstprojectspring.service.BookServiceList;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -13,14 +16,15 @@ public class ApplicationCommandRunner implements CommandLineRunner {
 	protected final Log logger = LogFactory.getLog(getClass());	
 	
 	@Autowired
-	BookService bookservice;
-	
+	BookServiceCreate bookservicecreate;
+	@Autowired
+	BookServiceList bookservicelist;
+
 
 	@Override
 	public void run(String... args) throws Exception {
 		
 		logger.info("Welcome to the runner from commandLineRunner");
-		
 
 		// String title, String author, int pages, int year, String iSBN
 		Book book1 = new Book(1,"Anna Karenina", "Tolstoi", 562, 1896, "BR5GV-5-ERG5-6567");
@@ -32,14 +36,13 @@ public class ApplicationCommandRunner implements CommandLineRunner {
 		// Book book5 = new Book ();
 		// Book book6 = new Book ();
 		
-		bookservice.addBookToH2(book1);
-		bookservice.addBookToH2(book2);
-		bookservice.addBookToH2(book3);
-		bookservice.addBookToH2(book4);
-		bookservice.addBookToH2(book5);
+		bookservicecreate.addBookToH2(book2);
+		bookservicecreate.addBookToH2(book3);
+		bookservicecreate.addBookToH2(book1);
+		bookservicecreate.addBookToH2(book4);
+		bookservicecreate.addBookToH2(book5);
 		
-		logger.info(bookservice.queryBooksFromH2());
-		
+		logger.info(bookservicelist.listBooksFromH2());
 		
 	}
 	
